@@ -25,6 +25,8 @@ function debugLog(...args) {
 // as a percentage of the base width so scaling remains consistent
 // across different screen sizes.
 const BASE_BOTTOM = 0.28; // % of base width from the bottom
+const OBJECT_WIDTH = 0.8; // % of base width
+const OBJECT_UP = 0.618; // % of object height
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -71,7 +73,7 @@ class Base {
         // the base. Each object is scaled based on width but keeps its
         // original aspect ratio so non-square graphics are drawn
         // correctly.
-        const objWidth = this.w * 0.8;
+        const objWidth = this.w * OBJECT_WIDTH;
         let currentY = this.y + this.h - this.w * BASE_BOTTOM;
         for (const obj of this.objects) {
             const objImg = objectImages[obj.name];
@@ -81,7 +83,7 @@ class Base {
             currentY -= objHeight;
             let drawY = currentY;
             if (obj.isSelected) {
-                drawY -= objHeight;
+                drawY -= OBJECT_UP * objHeight;
             }
             ctx.drawImage(objImg, objX, drawY, objWidth, objHeight);
         }
