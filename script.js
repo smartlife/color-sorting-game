@@ -42,9 +42,10 @@ function loadImage(src) {
 }
 
 /**
- * Represents a single base platform. It stores the base height,
- * the objects placed on it and the calculated drawing rectangle.
- * Position and size are assigned during layout.
+ * Represents a single base platform. Each object on the base is stored
+ * with a flag indicating whether it is currently selected. The draw
+ * method reads this flag to offset selected objects upward so the
+ * selection is visible without removing them from the stack.
  */
 class Base {
     constructor(baseHeight, objects) {
@@ -72,13 +73,17 @@ class Base {
         // correctly.
         const objWidth = this.w * 0.8;
         let currentY = this.y + this.h - this.w * BASE_BOTTOM;
-        for (const name of this.objects) {
-            const objImg = objectImages[name];
+        for (const obj of this.objects) {
+            const objImg = objectImages[obj.name];
             const aspect = objImg.height / objImg.width;
             const objHeight = objWidth * aspect;
             const objX = this.x + (this.w - objWidth) / 2;
             currentY -= objHeight;
-            ctx.drawImage(objImg, objX, currentY, objWidth, objHeight);
+            let drawY = currentY;
+            if (obj.isSelected) {
+                drawY -= objHeight;
+            }
+            ctx.drawImage(objImg, objX, drawY, objWidth, objHeight);
         }
     }
 }
@@ -134,7 +139,8 @@ async function prepareLevel(level) {
 
     rows.forEach((row, ri) => {
         row.forEach((cell, ci) => {
-            const b = new Base(cell.baseHeight, cell.objects);
+            const objs = cell.objects.map(name => ({ name, isSelected: false }));
+            const b = new Base(cell.baseHeight, objs);
             const x = startX + ci * (baseW + hGap) * scale;
             const y = startY + ri * (baseH + vGap) * scale;
             b.setRect(x, y, baseW * scale, baseH * scale);
@@ -144,45 +150,14 @@ async function prepareLevel(level) {
 }
 
 /**
- * Render all bases and, if a base is currently selected,
- * draw the floating objects above it to visualize selection.
+ * Render all bases. Selected objects are drawn with an offset directly
+ * inside the Base.draw() implementation.
  */
 function drawLevel() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     bases.forEach(b => b.draw());
-    drawFloatingSelection();
 }
 
-/**
- * Draw the currently selected objects slightly above their base
- * so players can see which items are being moved. Assumes all
- * selected objects share the same image and therefore height.
- */
-function drawFloatingSelection() {
-    if (!selectedBase || selectedObjects.length === 0) return;
-
-    const objWidth = selectedBase.w * 0.8;
-    let currentY = selectedBase.y + selectedBase.h - selectedBase.w * BASE_BOTTOM;
-
-    // advance Y past the objects that remain on the base
-    for (const name of selectedBase.objects) {
-        const img = objectImages[name];
-        const aspect = img.height / img.width;
-        const objHeight = objWidth * aspect;
-        currentY -= objHeight;
-    }
-
-    const img = objectImages[selectedObjects[0]];
-    const aspect = img.height / img.width;
-    const objHeight = objWidth * aspect;
-    currentY -= objHeight; // lift by one object height
-    const objX = selectedBase.x + (selectedBase.w - objWidth) / 2;
-
-    for (let i = selectedObjects.length - 1; i >= 0; i--) {
-        ctx.drawImage(img, objX, currentY, objWidth, objHeight);
-        currentY -= objHeight;
-    }
-}
 
 /**
  * Load level configuration from an external JSON file.
@@ -207,6 +182,8 @@ async function loadLevelConfigs() {
 async function showLevel(number) {
     const level = levelConfigs[number - 1];
     if (!level) return;
+    selectedBase = null;
+    selectedObjects = [];
     await prepareLevel(level);
     drawLevel();
 }
@@ -227,12 +204,11 @@ function showScreen(name) {
 }
 
 /**
- * Manage selection and movement of objects when the user clicks on
- * a base. Clicking a base picks up all objects of the same color on
- * its top. Clicking another base attempts to drop them following the
- * rules: the target must be empty or have the same color on top and
- * enough free space for the moved objects. Excess objects return to
- * the original base. Clicking the selected base again cancels the move.
+ * Manage selection and movement of objects when the user clicks on a base.
+ * Selected objects are flagged instead of removed so they can be drawn
+ * slightly above their original spot. Dropping the selection moves those
+ * flagged objects to another base if allowed or clears the flag when
+ * cancelled.
  */
 function handleCanvasClick(evt) {
     const rect = canvas.getBoundingClientRect();
@@ -248,39 +224,44 @@ function handleCanvasClick(evt) {
 
     if (!selectedBase) {
         if (clickedBase.objects.length === 0) return;
-        const color = clickedBase.objects[clickedBase.objects.length - 1];
+        const color = clickedBase.objects[clickedBase.objects.length - 1].name;
         selectedObjects = [];
-        while (clickedBase.objects.length && clickedBase.objects[clickedBase.objects.length - 1] === color) {
-            selectedObjects.push(clickedBase.objects.pop());
+        for (let i = clickedBase.objects.length - 1; i >= 0; i--) {
+            const obj = clickedBase.objects[i];
+            if (obj.name === color) {
+                obj.isSelected = true;
+                selectedObjects.push(obj);
+            } else {
+                break;
+            }
         }
         selectedBase = clickedBase;
         debugLog('Selected', selectedObjects.length, 'object(s) from base', bases.indexOf(clickedBase));
     } else if (selectedBase === clickedBase) {
-        for (let i = selectedObjects.length - 1; i >= 0; i--) {
-            selectedBase.objects.push(selectedObjects[i]);
-        }
+        selectedObjects.forEach(o => { o.isSelected = false; });
         selectedBase = null;
         selectedObjects = [];
         debugLog('Selection cancelled');
     } else {
         const target = clickedBase;
-        const color = selectedObjects[0];
+        const color = selectedObjects[0].name;
         const top = target.objects[target.objects.length - 1];
-        if (target.objects.length === 0 || top === color) {
+        if (target.objects.length === 0 || (top && top.name === color)) {
             const free = target.baseHeight - target.objects.length;
             const moveCount = Math.min(free, selectedObjects.length);
-            for (let i = moveCount - 1; i >= 0; i--) {
-                target.objects.push(selectedObjects[i]);
+            const moved = [];
+            for (let i = 0; i < moveCount; i++) {
+                moved.push(selectedBase.objects.pop());
             }
-            selectedObjects = selectedObjects.slice(moveCount);
+            for (let i = moved.length - 1; i >= 0; i--) {
+                const obj = moved[i];
+                obj.isSelected = false;
+                target.objects.push(obj);
+            }
+            selectedObjects.splice(0, moveCount);
             debugLog('Moved', moveCount, 'object(s) to base', bases.indexOf(target));
         }
-        for (let i = selectedObjects.length - 1; i >= 0; i--) {
-            selectedBase.objects.push(selectedObjects[i]);
-        }
-        if (selectedObjects.length) {
-            debugLog('Returned', selectedObjects.length, 'object(s) back to base', bases.indexOf(selectedBase));
-        }
+        selectedObjects.forEach(o => { o.isSelected = false; });
         selectedBase = null;
         selectedObjects = [];
     }
