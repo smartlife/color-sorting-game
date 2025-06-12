@@ -3,6 +3,8 @@ let levelConfigs = [];
 const baseImages = {};
 const objectImages = {};
 const bases = [];
+let selectedBase = null;
+let selectedObjects = [];
 
 // BASE_BOTTOM defines how far from the bottom of the base the
 // first object in the stack is positioned. The value is expressed
@@ -127,9 +129,45 @@ async function prepareLevel(level) {
     });
 }
 
+/**
+ * Render all bases and, if a base is currently selected,
+ * draw the floating objects above it to visualize selection.
+ */
 function drawLevel() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     bases.forEach(b => b.draw());
+    drawFloatingSelection();
+}
+
+/**
+ * Draw the currently selected objects slightly above their base
+ * so players can see which items are being moved. Assumes all
+ * selected objects share the same image and therefore height.
+ */
+function drawFloatingSelection() {
+    if (!selectedBase || selectedObjects.length === 0) return;
+
+    const objWidth = selectedBase.w * 0.8;
+    let currentY = selectedBase.y + selectedBase.h - selectedBase.w * BASE_BOTTOM;
+
+    // advance Y past the objects that remain on the base
+    for (const name of selectedBase.objects) {
+        const img = objectImages[name];
+        const aspect = img.height / img.width;
+        const objHeight = objWidth * aspect;
+        currentY -= objHeight;
+    }
+
+    const img = objectImages[selectedObjects[0]];
+    const aspect = img.height / img.width;
+    const objHeight = objWidth * aspect;
+    currentY -= objHeight; // lift by one object height
+    const objX = selectedBase.x + (selectedBase.w - objWidth) / 2;
+
+    for (let i = selectedObjects.length - 1; i >= 0; i--) {
+        ctx.drawImage(img, objX, currentY, objWidth, objHeight);
+        currentY -= objHeight;
+    }
 }
 
 /**
@@ -149,11 +187,10 @@ async function loadLevelConfigs() {
 }
 
 /**
- * Update the game screen for the provided level number. This demo
- * only sets the title but real rendering would use the level data.
+ * Update the game screen for the provided level number by preparing
+ * layout for the level and drawing it on the canvas.
  */
 async function showLevel(number) {
-    document.getElementById('game-title').textContent = `Game Screen - Level ${number}`;
     const level = levelConfigs[number - 1];
     if (!level) return;
     await prepareLevel(level);
@@ -171,15 +208,63 @@ function showScreen(name) {
     screens[name].classList.add('active');
 }
 
+/**
+ * Manage selection and movement of objects when the user clicks on
+ * a base. Clicking a base picks up all objects of the same color on
+ * its top. Clicking another base attempts to drop them following the
+ * rules: the target must be empty or have the same color on top and
+ * enough free space for the moved objects. Excess objects return to
+ * the original base. Clicking the selected base again cancels the move.
+ */
+function handleCanvasClick(evt) {
+    const rect = canvas.getBoundingClientRect();
+    const x = evt.clientX - rect.left;
+    const y = evt.clientY - rect.top;
+    const clickedBase = bases.find(b => x >= b.x && x <= b.x + b.w && y >= b.y && y <= b.y + b.h);
+    if (!clickedBase) return;
+
+    if (!selectedBase) {
+        if (clickedBase.objects.length === 0) return;
+        const color = clickedBase.objects[clickedBase.objects.length - 1];
+        selectedObjects = [];
+        while (clickedBase.objects.length && clickedBase.objects[clickedBase.objects.length - 1] === color) {
+            selectedObjects.push(clickedBase.objects.pop());
+        }
+        selectedBase = clickedBase;
+    } else if (selectedBase === clickedBase) {
+        for (let i = selectedObjects.length - 1; i >= 0; i--) {
+            selectedBase.objects.push(selectedObjects[i]);
+        }
+        selectedBase = null;
+        selectedObjects = [];
+    } else {
+        const target = clickedBase;
+        const color = selectedObjects[0];
+        const top = target.objects[target.objects.length - 1];
+        if (target.objects.length === 0 || top === color) {
+            const free = target.baseHeight - target.objects.length;
+            const moveCount = Math.min(free, selectedObjects.length);
+            for (let i = moveCount - 1; i >= 0; i--) {
+                target.objects.push(selectedObjects[i]);
+            }
+            selectedObjects = selectedObjects.slice(moveCount);
+        }
+        for (let i = selectedObjects.length - 1; i >= 0; i--) {
+            selectedBase.objects.push(selectedObjects[i]);
+        }
+        selectedBase = null;
+        selectedObjects = [];
+    }
+    drawLevel();
+}
+
 document.getElementById('start-button').addEventListener('click', () => {
     showScreen('game');
     showLevel(currentLevel);
 });
 
-document.getElementById('complete-button').addEventListener('click', () => {
-    document.getElementById('completed-title').textContent = `Level ${currentLevel} Completed`;
-    showScreen('completed');
-});
+canvas.addEventListener('click', handleCanvasClick);
+
 
 document.getElementById('next-button').addEventListener('click', () => {
     currentLevel += 1;
