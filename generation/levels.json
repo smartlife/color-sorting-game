@@ -1,0 +1,256 @@
+[
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "cyan",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "blue",
+            "blue",
+            "blue"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "cyan",
+            "cyan",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "blue",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "cyan",
+            "green",
+            "green",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "cyan",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "blue",
+            "blue"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "blue",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "cyan",
+            "cyan",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green",
+            "green",
+            "green",
+            "cyan"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "green",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "cyan",
+            "blue",
+            "blue",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green",
+            "green",
+            "green",
+            "magenta"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "magenta",
+            "magenta",
+            "magenta",
+            "cyan"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "blue",
+            "blue",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "cyan",
+            "cyan",
+            "cyan",
+            "green"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "magenta",
+            "magenta",
+            "magenta"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green",
+            "green",
+            "green",
+            "cyan"
+          ]
+        }
+      ]
+    ]
+  }
+]
