@@ -36,3 +36,10 @@ button {
     pointer-events: auto;
 }
 
+#reset-button {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
