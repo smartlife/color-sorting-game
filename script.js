@@ -24,8 +24,8 @@ function debugLog(...args) {
 // first object in the stack is positioned. The value is expressed
 // as a percentage of the base width so scaling remains consistent
 // across different screen sizes.
-const BASE_BOTTOM = 0.28; // % of base width from the bottom
-const OBJECT_WIDTH = 0.8; // % of base width
+const BASE_BOTTOM = 0.265; // % of base width from the bottom
+const OBJECT_WIDTH = 0.86; // % of base width
 const OBJECT_UP = 0.618; // % of object height
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
