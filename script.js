@@ -4,10 +4,11 @@ const baseImages = {};
 const objectImages = {};
 const bases = [];
 
-// base_bottom defines where the stack of objects begins relative
-// to the bottom of the base. It is expressed as a percentage of
-// the base width so scaling is consistent with the rest of the layout.
-const BASE_BOTTOM = 0.2; // 20% of base width from the bottom
+// BASE_BOTTOM defines how far from the bottom of the base the
+// first object in the stack is positioned. The value is expressed
+// as a percentage of the base width so scaling remains consistent
+// across different screen sizes.
+const BASE_BOTTOM = 0.25; // 25% of base width from the bottom
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -49,16 +50,19 @@ class Base {
     draw() {
         const img = baseImages[this.baseHeight];
         ctx.drawImage(img, this.x, this.y, this.w, this.h);
-        // Objects stack from the point BASE_BOTTOM above the bottom
-        // of the base. objSize is proportional to base width so
-        // scaling remains consistent for both images.
-        const objSize = this.w * 0.8;
-        let currentY = this.y + this.h - this.w * BASE_BOTTOM - objSize;
+        // Objects stack from the point BASE_BOTTOM above the bottom of
+        // the base. Each object is scaled based on width but keeps its
+        // original aspect ratio so non-square graphics are drawn
+        // correctly.
+        const objWidth = this.w * 0.8;
+        let currentY = this.y + this.h - this.w * BASE_BOTTOM;
         for (const name of this.objects) {
             const objImg = objectImages[name];
-            const objX = this.x + (this.w - objSize) / 2;
-            ctx.drawImage(objImg, objX, currentY, objSize, objSize);
-            currentY -= objSize;
+            const aspect = objImg.height / objImg.width;
+            const objHeight = objWidth * aspect;
+            const objX = this.x + (this.w - objWidth) / 2;
+            currentY -= objHeight;
+            ctx.drawImage(objImg, objX, currentY, objWidth, objHeight);
         }
     }
 }
@@ -69,8 +73,8 @@ class Base {
  * loads their images if needed and then positions each base in
  * a grid. Horizontal spacing is 20% of base width and vertical
  * spacing is 50% of base width. The entire level is scaled to fit
- * within the canvas while keeping a 5% margin on the sides and a
- * 15% margin at the bottom.
+ * within the canvas while keeping 5% margins on the sides and top
+ * and a 15% margin at the bottom.
  */
 async function prepareLevel(level) {
     bases.length = 0;
@@ -106,11 +110,11 @@ async function prepareLevel(level) {
     const cw = canvas.width = canvas.clientWidth;
     const ch = canvas.height = canvas.clientHeight;
     const areaW = cw * 0.9;
-    const areaH = ch * 0.85;
+    const areaH = ch * 0.8;
     const scale = Math.min(areaW / unscaledW, areaH / unscaledH);
 
     const startX = cw * 0.05 + (areaW - unscaledW * scale) / 2;
-    const startY = (areaH - unscaledH * scale) / 2;
+    const startY = ch * 0.05 + (areaH - unscaledH * scale) / 2;
 
     rows.forEach((row, ri) => {
         row.forEach((cell, ci) => {
