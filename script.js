@@ -216,6 +216,10 @@ const screens = {
     game: document.getElementById('game-screen'),
     completed: document.getElementById('completed-screen')
 };
+/**
+ * Toggle which screen is visible by changing the `active` CSS class.
+ * Only one screen is displayed at a time so the others get hidden.
+ */
 
 function showScreen(name) {
     Object.values(screens).forEach(screen => screen.classList.remove('active'));
