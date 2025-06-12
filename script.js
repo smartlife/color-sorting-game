@@ -162,13 +162,22 @@ function drawLevel() {
 
 /**
  * Determine whether the level is complete.
- * A level is complete when every base is either empty or all
- * objects on that base share the same color.
+ * Each base is inspected individually. An empty base is ignored
+ * because extra space is often required to maneuver pieces. Any
+ * non-empty base must meet two conditions:
+ *  1. The number of objects equals the base height so the base is
+ *     completely filled.
+ *  2. Every object has the same color as the first object on that
+ *     base.
+ * Only when every base satisfies these rules is the level considered
+ * solved.
  */
 function isLevelCompleted() {
     return bases.every(b => {
         if (b.objects.length === 0) return true;
-        return b.objects.every(o => o.name === b.objects[0].name);
+        if (b.objects.length !== b.baseHeight) return false;
+        const color = b.objects[0].name;
+        return b.objects.every(o => o.name === color);
     });
 }
 
