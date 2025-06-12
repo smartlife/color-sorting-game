@@ -160,6 +160,37 @@ function drawLevel() {
     bases.forEach(b => b.draw());
 }
 
+/**
+ * Determine whether the level is complete.
+ * A level is complete when every base is either empty or all
+ * objects on that base share the same color.
+ */
+function isLevelCompleted() {
+    return bases.every(b => {
+        if (b.objects.length === 0) return true;
+        return b.objects.every(o => o.name === b.objects[0].name);
+    });
+}
+
+/**
+ * Display the completion screen after verifying the current level
+ * is solved. The next button is hidden when no further levels are
+ * available so the screen simply announces the game is finished.
+ */
+function showCompletionScreen() {
+    const title = document.getElementById('completed-title');
+    const nextBtn = document.getElementById('next-button');
+    const lastLevel = currentLevel === levelConfigs.length;
+    if (lastLevel) {
+        title.textContent = 'Game Complete';
+        nextBtn.style.display = 'none';
+    } else {
+        title.textContent = `Level ${currentLevel} Completed`;
+        nextBtn.style.display = 'inline-block';
+    }
+    showScreen('completed');
+}
+
 
 /**
  * Load level configuration from an external JSON file.
@@ -188,6 +219,14 @@ async function showLevel(number) {
     selectedObjects = [];
     await prepareLevel(level);
     drawLevel();
+}
+
+/**
+ * Reload the current level from the original configuration.
+ * This allows the player to restart the puzzle at any time.
+ */
+function resetLevel() {
+    showLevel(currentLevel);
 }
 
 const screens = {
@@ -266,8 +305,11 @@ function handleCanvasClick(evt) {
         selectedObjects.forEach(o => { o.isSelected = false; });
         selectedBase = null;
         selectedObjects = [];
-    }
+    } 
     drawLevel();
+    if (isLevelCompleted()) {
+        showCompletionScreen();
+    }
 }
 
 document.getElementById('start-button').addEventListener('click', () => {
@@ -277,6 +319,8 @@ document.getElementById('start-button').addEventListener('click', () => {
 });
 
 canvas.addEventListener('click', handleCanvasClick);
+
+document.getElementById('reset-button').addEventListener('click', resetLevel);
 
 
 document.getElementById('next-button').addEventListener('click', () => {
