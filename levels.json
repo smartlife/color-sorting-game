@@ -6,8 +6,8 @@
         { "baseHeight": 7, "objects": [] }
       ],
       [
-        { "baseHeight": 7, "objects": ["red", "red", "red", "red", "red"] },
+        { "baseHeight": 7, "objects": ["red", "red", "red", "red", "red"] }
       ]
     ]
-  },
+  }
 ]

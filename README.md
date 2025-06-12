@@ -41,4 +41,7 @@ Each base is drawn using an image named `img/base_{baseHeight}.png` and each
 object uses `img/object_{name}.png`. The canvas reserves 5% of the screen on the
 sides and 15% at the bottom. Bases are positioned in a grid with 20% of the base
 width separating cells horizontally and 50% of the base width separating rows
-vertically. Everything is scaled uniformly to fit the available space.
+vertically. A constant **BASE_BOTTOM** controls how far from the bottom of the
+base the first object is stacked (20% of the base width in this demo). Objects
+are drawn one above another so they appear stacked on the platform. Everything is
+scaled uniformly to fit the available space.
