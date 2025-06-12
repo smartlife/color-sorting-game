@@ -6,6 +6,20 @@ const bases = [];
 let selectedBase = null;
 let selectedObjects = [];
 
+// Toggle this to enable or disable verbose logging during gameplay.
+const DEBUG = false;
+
+/**
+ * Helper to log debug information conditionally.
+ * It prints to the console only when the DEBUG flag is true so normal
+ * gameplay isn't cluttered by messages.
+ */
+function debugLog(...args) {
+    if (DEBUG) {
+        console.log(...args);
+    }
+}
+
 // BASE_BOTTOM defines how far from the bottom of the base the
 // first object in the stack is positioned. The value is expressed
 // as a percentage of the base width so scaling remains consistent
@@ -202,6 +216,10 @@ const screens = {
     game: document.getElementById('game-screen'),
     completed: document.getElementById('completed-screen')
 };
+/**
+ * Toggle which screen is visible by changing the `active` CSS class.
+ * Only one screen is displayed at a time so the others get hidden.
+ */
 
 function showScreen(name) {
     Object.values(screens).forEach(screen => screen.classList.remove('active'));
@@ -221,7 +239,12 @@ function handleCanvasClick(evt) {
     const x = evt.clientX - rect.left;
     const y = evt.clientY - rect.top;
     const clickedBase = bases.find(b => x >= b.x && x <= b.x + b.w && y >= b.y && y <= b.y + b.h);
-    if (!clickedBase) return;
+    debugLog('Canvas click', x, y);
+    if (!clickedBase) {
+        debugLog('Click missed all bases');
+        return;
+    }
+    debugLog('Clicked base', bases.indexOf(clickedBase));
 
     if (!selectedBase) {
         if (clickedBase.objects.length === 0) return;
@@ -231,12 +254,14 @@ function handleCanvasClick(evt) {
             selectedObjects.push(clickedBase.objects.pop());
         }
         selectedBase = clickedBase;
+        debugLog('Selected', selectedObjects.length, 'object(s) from base', bases.indexOf(clickedBase));
     } else if (selectedBase === clickedBase) {
         for (let i = selectedObjects.length - 1; i >= 0; i--) {
             selectedBase.objects.push(selectedObjects[i]);
         }
         selectedBase = null;
         selectedObjects = [];
+        debugLog('Selection cancelled');
     } else {
         const target = clickedBase;
         const color = selectedObjects[0];
@@ -248,9 +273,13 @@ function handleCanvasClick(evt) {
                 target.objects.push(selectedObjects[i]);
             }
             selectedObjects = selectedObjects.slice(moveCount);
+            debugLog('Moved', moveCount, 'object(s) to base', bases.indexOf(target));
         }
         for (let i = selectedObjects.length - 1; i >= 0; i--) {
             selectedBase.objects.push(selectedObjects[i]);
+        }
+        if (selectedObjects.length) {
+            debugLog('Returned', selectedObjects.length, 'object(s) back to base', bases.indexOf(selectedBase));
         }
         selectedBase = null;
         selectedObjects = [];
@@ -260,7 +289,8 @@ function handleCanvasClick(evt) {
 
 document.getElementById('start-button').addEventListener('click', () => {
     showScreen('game');
-    showLevel(currentLevel);
+    // Wait one frame so layout recalculates with the game screen visible
+    requestAnimationFrame(() => showLevel(currentLevel));
 });
 
 canvas.addEventListener('click', handleCanvasClick);
