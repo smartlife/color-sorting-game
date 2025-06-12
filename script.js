@@ -8,7 +8,7 @@ const bases = [];
 // first object in the stack is positioned. The value is expressed
 // as a percentage of the base width so scaling remains consistent
 // across different screen sizes.
-const BASE_BOTTOM = 0.25; // 25% of base width from the bottom
+const BASE_BOTTOM = 0.27; // % of base width from the bottom
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
 
