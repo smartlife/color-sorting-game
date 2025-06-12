@@ -3,6 +3,7 @@ let levelConfigs = [];
 const baseImages = {};
 const objectImages = {};
 const bases = [];
+
 // base_bottom defines where the stack of objects begins relative
 // to the bottom of the base. It is expressed as a percentage of
 // the base width so scaling is consistent with the rest of the layout.
@@ -48,7 +49,6 @@ class Base {
     draw() {
         const img = baseImages[this.baseHeight];
         ctx.drawImage(img, this.x, this.y, this.w, this.h);
-
         // Objects stack from the point BASE_BOTTOM above the bottom
         // of the base. objSize is proportional to base width so
         // scaling remains consistent for both images.
