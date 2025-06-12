@@ -2,25 +2,12 @@
   {
     "rows": [
       [
-        { "baseHeight": 1, "objects": ["green"] },
-        { "baseHeight": 0, "objects": [] }
+        { "baseHeight": 7, "objects": ["green", "green", "green", "green", "red"] },
+        { "baseHeight": 7, "objects": [] }
       ],
       [
-        { "baseHeight": 2, "objects": ["red", "blue"] },
-        { "baseHeight": 1, "objects": ["yellow"] }
+        { "baseHeight": 7, "objects": ["red", "red", "red", "red", "red"] },
       ]
     ]
   },
-  {
-    "rows": [
-      [
-        { "baseHeight": 0, "objects": [] },
-        { "baseHeight": 2, "objects": ["blue", "blue"] }
-      ],
-      [
-        { "baseHeight": 1, "objects": ["red"] },
-        { "baseHeight": 3, "objects": ["yellow", "green", "green"] }
-      ]
-    ]
-  }
 ]
