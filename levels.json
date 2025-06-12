@@ -2,11 +2,13 @@
   {
     "rows": [
       [
-        { "baseHeight": 7, "objects": ["green", "green", "green", "green", "red"] },
-        { "baseHeight": 7, "objects": [] }
+        { "baseHeight": 5, "objects": ["yellow", "green", "green", "green", "red"] },
+        { "baseHeight": 5, "objects": ["yellow", "yellow", "yellow", "green", "red"] },
+        { "baseHeight": 5, "objects": ["yellow", "cyan", "cyan", "cyan", "cyan"] }
       ],
       [
-        { "baseHeight": 7, "objects": ["red", "red", "red", "red", "red"] }
+        { "baseHeight": 5, "objects": ["green", "cyan", "red", "red", "red"] },
+        { "baseHeight": 5, "objects": [] }
       ]
     ]
   }
