@@ -1,6 +1,6 @@
 # Color Sorting Game
 
-A minimal web-based game skeleton that demonstrates how to manage multiple screens on a mobile layout. The game includes:
+A web-based game. The game includes:
 
 - **Start Screen** – presented when the page loads. Press **Start** to begin.
 - **Game Screen** – shows the current level with a **Reset Level** button.
@@ -8,13 +8,11 @@ A minimal web-based game skeleton that demonstrates how to manage multiple scree
 
 Each screen fills the entire viewport so there is no scrolling on mobile devices. The JavaScript manages transitions between screens and keeps track of the current level number, starting from 1.
 
-Levels automatically advance once every base contains objects of a single color or is empty.
-
-This project is intended as a simple starting point for expanding into a full puzzle game where players sort colors into the correct order.
+Levels automatically advance once every base is full with objects of a single color or is empty.
 
 ## Getting Started
 
-Open `index.html` in a modern browser to try the demo. No build step or external dependencies are required.
+Open `www/index.html` in a modern browser to try the demo. No build step or external dependencies are required.
 
 ## Level Configuration
 
