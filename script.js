@@ -95,10 +95,11 @@ class Base {
  * The algorithm gathers unique base heights and object colors,
  * loads their images if needed and then positions each base in
  * a grid. Horizontal spacing is 20% of base width and vertical
- * spacing is 50% of base width. The entire level is scaled to fit
- * within the canvas while keeping 5% margins on the sides and top
- * and a 15% margin at the bottom.
- */
+ * spacing is 50% of base width. Rows may contain a different number of
+ * bases and each row is horizontally centered within the overall grid.
+ * The entire level is scaled to fit within the canvas while keeping 5%
+ * margins on the sides and top and a 15% margin at the bottom.
+*/
 async function prepareLevel(level) {
     bases.length = 0;
     const neededBases = new Set();
@@ -140,10 +141,11 @@ async function prepareLevel(level) {
     const startY = ch * 0.05 + (areaH - unscaledH * scale) / 2;
 
     rows.forEach((row, ri) => {
+        const rowOffset = ((maxCells - row.length) * (baseW + hGap) / 2) * scale;
         row.forEach((cell, ci) => {
             const objs = cell.objects.map(name => ({ name, isSelected: false }));
             const b = new Base(cell.baseHeight, objs);
-            const x = startX + ci * (baseW + hGap) * scale;
+            const x = startX + rowOffset + ci * (baseW + hGap) * scale;
             const y = startY + ri * (baseH + vGap) * scale;
             b.setRect(x, y, baseW * scale, baseH * scale);
             bases.push(b);
