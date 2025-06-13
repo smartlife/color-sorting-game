@@ -188,11 +188,13 @@ function isLevelCompleted() {
 }
 
 /**
- * Display the completion screen after verifying the current level
- * is solved. The next button is hidden when no further levels are
- * available so the screen simply announces the game is finished.
+ * Display a modal overlay announcing the current level is solved.
+ * The overlay covers the canvas to block further interaction while
+ * still showing the completed layout underneath. The button to
+ * advance is hidden when no more levels are available.
  */
 function showCompletionScreen() {
+    const overlay = document.getElementById('completion-overlay');
     const title = document.getElementById('completed-title');
     const nextBtn = document.getElementById('next-button');
     const lastLevel = currentLevel === levelConfigs.length;
@@ -200,10 +202,10 @@ function showCompletionScreen() {
         title.textContent = 'Game Complete';
         nextBtn.style.display = 'none';
     } else {
-        title.textContent = `Level ${currentLevel} Completed`;
+        title.textContent = `Congratulations!\nLevel ${currentLevel} complete!`;
         nextBtn.style.display = 'inline-block';
     }
-    showScreen('completed');
+    overlay.classList.add('active');
 }
 
 
@@ -248,8 +250,7 @@ function resetLevel() {
 
 const screens = {
     start: document.getElementById('start-screen'),
-    game: document.getElementById('game-screen'),
-    completed: document.getElementById('completed-screen')
+    game: document.getElementById('game-screen')
 };
 const undoButton = document.getElementById('undo-button');
 
@@ -369,6 +370,7 @@ undoButton.addEventListener('click', undoMove);
 document.getElementById('next-button').addEventListener('click', () => {
     currentLevel += 1;
     showLevel(currentLevel);
+    document.getElementById('completion-overlay').classList.remove('active');
     showScreen('game');
 });
 
