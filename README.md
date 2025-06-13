@@ -4,7 +4,7 @@ A web-based game. The game includes:
 
 - **Start Screen** – presented when the page loads. Press **Start** to begin.
 - **Game Screen** – shows the current level with a **Reset Level** button.
-- **Level Completed Screen** – displays when a level is completed. Press **Next Level** to continue to the next level.
+- **Completion Overlay** – appears on top of the level when it is solved and contains a **Next Level ➡️** button.
 
 Each screen fills the entire viewport so there is no scrolling on mobile devices. The JavaScript manages transitions between screens and keeps track of the current level number, starting from 1.
 
