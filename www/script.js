@@ -191,8 +191,10 @@ function isLevelCompleted() {
  * Display a modal overlay announcing the current level is solved.
  * The overlay covers the canvas to block further interaction while
  * still showing the completed layout underneath. The button to
- * advance is hidden when no more levels are available.
- */
+ * advance is hidden when no more levels are available. The title
+ * text uses a line break via "\n" which is rendered thanks to the
+ * CSS rule `white-space: pre-line` on the heading element.
+*/
 function showCompletionScreen() {
     const overlay = document.getElementById('completion-overlay');
     const title = document.getElementById('completed-title');

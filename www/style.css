@@ -73,5 +73,10 @@ button {
     border-radius: 10px;
 }
 
+#completed-title {
+    /* Preserve newline characters so the title can be set with \n */
+    white-space: pre-line;
+}
+
 
 
