@@ -45,3 +45,13 @@ separating rows vertically. A constant **BASE_BOTTOM** controls how far from the
 bottom of the base the first object is stacked (25% of the base width in this
 demo). Objects keep their original aspect ratio when scaled so they may not be
 perfectly square. Everything is scaled uniformly to fit the available space.
+
+## Back Propagation Rules
+
+To create interesting puzzles the generator starts from a solved board and
+performs random moves without restricting the target colour.  This quickly mixes
+objects but may occasionally produce an unsolvable arrangement.  After each
+scramble the built‑in solver checks that a solution exists; otherwise the board
+is regenerated.  Conceptually this is equivalent to repeatedly applying the
+inverse of a legal move ("back propagation") until the desired difficulty is
+reached.

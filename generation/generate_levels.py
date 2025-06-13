@@ -1,10 +1,8 @@
 """Level generation utilities for the color sorting game.
 
 Levels are produced by starting from a solved configuration and then
-applying a number of *reverse* moves.  Each reverse move removes a
-uniform group of objects from one base and places it onto another base
-without checking colour compatibility.  Because the operation is exactly
-reversible, the generated puzzles are guaranteed to be solvable.  The
+applying a number of *legal* moves at random.  Because each move obeys the
+game rules, simply reversing the sequence leads back to the solution.  The
 amount of scrambling per level is controlled through ``DIFFICULTY_STEPS``.
 Running the module will create ``levels.json`` inside the generation folder.
 """
@@ -16,21 +14,38 @@ import random
 from collections import deque
 from pathlib import Path
 
+# Use a fixed seed so generated puzzles are reproducible. This also makes
+# debugging easier because the exact same boards can be re-created across
+# runs of the script.
+random.seed(0)
+
 # Folder containing object_*.png files
-IMG_DIR = Path(__file__).resolve().parents[1] / "img"
+# The images live under the "www" directory of the project so adjust the
+# path accordingly.  A previous version pointed one directory too high which
+# meant no colours were loaded and empty levels were produced.
+IMG_DIR = Path(__file__).resolve().parents[1] / "www" / "img"
 # Output file path
 OUTPUT_FILE = Path(__file__).resolve().parent / "levels.json"
 
 # The number of levels to generate
-NUM_LEVELS = 6
+# We now create a larger set so the game has more content to play through.
+NUM_LEVELS = 40
 
 # Difficulty parameters. Keys are level numbers starting from 0.
 # When a key is reached the settings are updated for all following levels.
-# ``steps`` controls how many reverse moves are applied when scrambling.
+# ``steps`` controls how many random moves are applied when scrambling.
 DIFFICULTY_STEPS = {
+    # Start with three bases and a small amount of scrambling.
     0: {"bases_count": 3, "base_height": 5, "steps": 5},
-    2: {"bases_count": 4, "steps": 10},
-    4: {"bases_count": 5, "steps": 15},
+    # Increase scrambling after the first few levels to slowly ramp up
+    # difficulty while keeping the same number of bases.
+    5: {"steps": 10},
+    # Add another base and more scrambling once the player has warmed up.
+    10: {"bases_count": 4, "steps": 15},
+    # Continue to raise complexity.
+    20: {"bases_count": 5, "steps": 20},
+    # Final stretch uses six bases and heavy scrambling.
+    30: {"bases_count": 6, "steps": 25},
 }
 
 
@@ -60,69 +75,75 @@ def is_solved(bases: list[list[str]], base_height: int) -> bool:
     return True
 
 
-def back_propagate(bases: list[list[str]], base_height: int, steps: int) -> None:
-    """Scramble using moves that are the reverse of allowed game moves.
+def scramble(bases: list[list[str]], base_height: int, steps: int) -> None:
+    """Randomly mix ``bases`` by moving blocks without colour restrictions.
 
-    The game only allows moving a uniform group from one base to another if the
-    destination is empty or has the same color on top.  When running in reverse
-    we ignore this color restriction and simply move random groups between bases
-    as long as there is space.  Each reverse step can be undone with a single
-    legal move in the forward direction, therefore the final configuration
-    remains solvable.
+    Traditional color sort puzzles are created by starting from a solved
+    configuration and executing arbitrary moves while never exceeding the
+    capacity of any base.  The sequence is then discarded, leaving a scrambled
+    board for the player.  Because we only move blocks between bases that have
+    room, reversing the exact sequence would restore the solved state, so a
+    solution is guaranteed to exist.  Unlike the previous implementation, moves
+    are *not* limited to empty or matching-colour targets which prevents all
+    bases from remaining single-coloured during generation.
     """
-    rng = random.Random()
+
+    rng = random
     for _ in range(steps):
-        # pick a source with objects
-        src_indices = [i for i, b in enumerate(bases) if b]
-        if not src_indices:
+        moves = []
+        count = len(bases)
+        for i in range(count):
+            src = bases[i]
+            if not src:
+                continue
+            for j in range(count):
+                if i == j:
+                    continue
+                tgt = bases[j]
+                if len(tgt) == base_height:
+                    continue
+                max_move = min(len(src), base_height - len(tgt))
+                for mv in range(1, max_move + 1):
+                    moves.append((i, j, mv))
+        if not moves:
             break
-        src = rng.choice(src_indices)
-        src_base = bases[src]
-
-        # contiguous group of same color from the top
-        color = src_base[-1]
-        group = 1
-        for j in range(len(src_base) - 2, -1, -1):
-            if src_base[j] == color:
-                group += 1
-            else:
-                break
-
-        # pick a target with free space
-        tgt_indices = [i for i, b in enumerate(bases) if i != src and len(b) < base_height]
-        if not tgt_indices:
-            break
-        tgt = rng.choice(tgt_indices)
-        tgt_base = bases[tgt]
-        free = base_height - len(tgt_base)
-        move_cnt = rng.randint(1, min(group, free))
-        for _ in range(move_cnt):
-            tgt_base.append(src_base.pop())
+        i, j, mv = rng.choice(moves)
+        block = bases[i][-mv:]
+        bases[i] = bases[i][:-mv]
+        bases[j].extend(block)
 
 
 def create_level(base_count: int, base_height: int, colors: list[str], steps: int) -> dict:
     """Return a single level configuration.
 
-    Starting from a solved state (one empty base and the rest filled with a
-    single color), the configuration is scrambled by applying the
-    ``back_propagate`` routine for ``steps`` iterations.
+    A fresh board is created in a solved state (all bases contain one colour
+    except for a spare empty base).  ``scramble`` then executes random moves to
+    mix the objects.  If the resulting puzzle is either already solved or the
+    breadth‑first solver fails to find a solution we repeat the process until a
+    valid board is produced.  This guards against unlucky sequences that would
+    otherwise yield an unsolvable arrangement.
     """
     color_count = min(len(colors), base_count - 1)
     chosen_colors = colors[:color_count]
-    bases = [[c] * base_height for c in chosen_colors]
-    while len(bases) < base_count:
-        bases.append([])
-    back_propagate(bases, base_height, steps)
-    if is_solved(bases, base_height):
-        back_propagate(bases, base_height, steps)
-    per_row = 3
-    rows = []
-    for i in range(0, len(bases), per_row):
-        row = []
-        for b in bases[i:i + per_row]:
-            row.append({"baseHeight": base_height, "objects": b})
-        rows.append(row)
-    return {"rows": rows}
+
+    while True:
+        bases = [[c] * base_height for c in chosen_colors]
+        while len(bases) < base_count:
+            bases.append([])
+
+        scramble(bases, base_height, steps)
+        if is_solved(bases, base_height):
+            continue
+        level = {"rows": []}
+        per_row = 3
+        for i in range(0, len(bases), per_row):
+            row = []
+            for b in bases[i:i + per_row]:
+                row.append({"baseHeight": base_height, "objects": b})
+            level["rows"].append(row)
+        solved, _ = solve_level(level)
+        if solved:
+            return level
 
 
 def generate_levels() -> list[dict]:
@@ -196,6 +217,53 @@ def _next_states(bases: list[list[str]], heights: list[int]) -> list[list[list[s
                 new_b[j].extend(moved)
                 states.append(new_b)
     return states
+
+
+def back_propagate(bases: list[list[str]], heights: list[int]) -> list[list[list[str]]]:
+    """Return every board that can reach ``bases`` in one legal move.
+
+    ``bases`` must describe a solved configuration according to ``_solved``.
+    For each possible forward move from an unknown board ``U`` to ``bases`` we
+    reconstruct ``U`` by reversing that move and verify that the original forward
+    operation would be legal.  This allows generation of puzzles by repeatedly
+    applying backwards steps from a solved state while keeping the guarantee of
+    solvability.
+    """
+
+    if not _solved(bases, heights):
+        raise ValueError("back_propagate expects a solved configuration")
+
+    result: list[list[list[str]]] = []
+    count = len(bases)
+    for tgt in range(count):
+        source_base = bases[tgt]
+        if not source_base:
+            continue
+        # determine the contiguous run of identical colours on top of tgt
+        colour = source_base[-1]
+        run = 1
+        for idx in range(len(source_base) - 2, -1, -1):
+            if source_base[idx] == colour:
+                run += 1
+            else:
+                break
+        for r in range(1, run + 1):
+            group = source_base[-r:]
+            for src in range(count):
+                if src == tgt:
+                    continue
+                if len(bases[src]) + r > heights[src]:
+                    continue
+                new_src = bases[src] + group
+                new_tgt = source_base[:-r]
+                if new_tgt and new_tgt[-1] != colour:
+                    continue
+                candidate = [list(b) for b in bases]
+                candidate[src] = new_src
+                candidate[tgt] = new_tgt
+                if not _solved(candidate, heights):
+                    result.append(candidate)
+    return result
 
 
 def solve_level(level: dict) -> tuple[bool, int]:

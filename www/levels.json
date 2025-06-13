@@ -7,12 +7,36 @@
           "objects": [
             "blue",
             "blue",
+            "blue",
+            "blue",
             "blue"
           ]
         },
         {
           "baseHeight": 5,
           "objects": [
+            "cyan",
+            "cyan",
+            "cyan",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
             "cyan",
             "cyan"
           ]
@@ -22,6 +46,44 @@
           "objects": [
             "blue",
             "blue",
+            "blue",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "blue"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "cyan",
+            "cyan",
+            "blue",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
             "cyan",
             "cyan",
             "cyan"
@@ -45,7 +107,266 @@
         {
           "baseHeight": 5,
           "objects": [
+            "cyan",
+            "cyan",
+            "cyan",
+            "cyan",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
             "blue",
+            "blue",
+            "blue",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "cyan",
+            "cyan",
+            "cyan"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "cyan",
+            "cyan",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "blue",
+            "blue",
+            "blue"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "blue",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "blue",
+            "blue",
+            "blue",
+            "blue"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "cyan",
+            "cyan",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "cyan",
+            "blue",
+            "blue"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "blue",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "blue",
+            "cyan",
+            "cyan",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "cyan",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "blue",
+            "blue"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "green",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "cyan",
+            "cyan",
+            "cyan",
+            "green"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "blue"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "green",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
             "cyan",
             "cyan"
           ]
@@ -55,9 +376,52 @@
           "objects": [
             "green",
             "green",
+            "cyan",
+            "cyan",
+            "green"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "blue",
+            "blue",
+            "blue"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "cyan",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
             "green",
             "cyan",
-            "cyan"
+            "green",
+            "green"
           ]
         }
       ],
@@ -67,6 +431,50 @@
           "objects": [
             "green",
             "green",
+            "cyan",
+            "blue"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "green",
+            "blue",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green",
+            "green",
+            "cyan",
+            "green"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "blue",
             "cyan"
           ]
         }
@@ -79,15 +487,6 @@
         {
           "baseHeight": 5,
           "objects": [
-            "green",
-            "green",
-            "cyan"
-          ]
-        },
-        {
-          "baseHeight": 5,
-          "objects": [
-            "cyan",
             "blue",
             "blue",
             "blue"
@@ -96,8 +495,16 @@
         {
           "baseHeight": 5,
           "objects": [
-            "blue",
+            "cyan",
             "green",
+            "blue",
+            "blue",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
             "green",
             "green"
           ]
@@ -108,9 +515,10 @@
           "baseHeight": 5,
           "objects": [
             "cyan",
-            "blue",
+            "green",
             "cyan",
-            "cyan"
+            "cyan",
+            "green"
           ]
         }
       ]
@@ -122,10 +530,9 @@
         {
           "baseHeight": 5,
           "objects": [
-            "blue",
-            "blue",
             "cyan",
-            "blue",
+            "cyan",
+            "cyan",
             "green"
           ]
         },
@@ -133,18 +540,17 @@
           "baseHeight": 5,
           "objects": [
             "cyan",
-            "green",
-            "green",
-            "green",
-            "cyan"
+            "cyan",
+            "blue",
+            "blue"
           ]
         },
         {
           "baseHeight": 5,
           "objects": [
-            "cyan",
-            "blue",
-            "cyan",
+            "green",
+            "green",
+            "green",
             "green"
           ]
         }
@@ -153,7 +559,137 @@
         {
           "baseHeight": 5,
           "objects": [
+            "blue",
+            "blue",
             "blue"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "green",
+            "green",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green",
+            "cyan",
+            "blue",
+            "cyan"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "cyan",
+            "green"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "blue",
+            "cyan",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": []
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green",
+            "cyan",
+            "blue",
+            "cyan"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "green",
+            "green",
+            "green",
+            "cyan"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green",
+            "green",
+            "blue",
+            "green"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "cyan",
+            "blue",
+            "green"
           ]
         }
       ]
@@ -176,7 +712,9 @@
           "baseHeight": 5,
           "objects": [
             "cyan",
-            "cyan"
+            "cyan",
+            "blue",
+            "blue"
           ]
         },
         {
@@ -184,6 +722,7 @@
           "objects": [
             "green",
             "green",
+            "blue",
             "cyan",
             "cyan"
           ]
@@ -193,20 +732,7 @@
         {
           "baseHeight": 5,
           "objects": [
-            "magenta",
-            "magenta",
-            "magenta",
             "cyan"
-          ]
-        },
-        {
-          "baseHeight": 5,
-          "objects": [
-            "blue",
-            "magenta",
-            "magenta",
-            "blue",
-            "blue"
           ]
         }
       ]
@@ -218,27 +744,25 @@
         {
           "baseHeight": 5,
           "objects": [
-            "blue",
             "blue"
           ]
         },
         {
           "baseHeight": 5,
           "objects": [
-            "cyan",
+            "blue",
             "blue",
             "blue",
             "magenta",
-            "green"
+            "blue"
           ]
         },
         {
           "baseHeight": 5,
           "objects": [
-            "cyan",
-            "cyan",
             "green",
-            "cyan",
+            "green",
+            "green",
             "magenta"
           ]
         }
@@ -257,9 +781,1117 @@
         {
           "baseHeight": 5,
           "objects": [
+            "cyan",
+            "cyan",
+            "cyan",
+            "cyan",
+            "green"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "blue",
+            "blue",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "cyan",
+            "magenta"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "magenta",
+            "blue",
+            "cyan",
+            "green"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "magenta",
+            "green",
+            "magenta"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "green"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "magenta",
+            "cyan",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green",
+            "cyan",
+            "green"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "magenta",
+            "magenta",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "blue",
+            "magenta",
+            "blue"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "magenta",
+            "magenta"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green",
+            "green",
+            "green"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "blue",
+            "magenta",
+            "cyan",
+            "magenta"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "magenta",
+            "green",
+            "cyan",
+            "blue"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "green",
+            "green",
+            "green",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "cyan",
+            "blue",
+            "magenta"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": []
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "magenta",
+            "magenta",
+            "blue",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "blue",
+            "magenta",
+            "cyan",
+            "cyan"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "magenta",
+            "magenta",
+            "magenta",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "cyan",
+            "cyan",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green",
+            "green"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "cyan",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "blue",
+            "magenta"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "blue",
+            "green",
+            "magenta"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "cyan",
+            "blue",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "magenta",
+            "green",
+            "magenta"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "cyan",
+            "cyan",
+            "green",
+            "magenta"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "cyan",
+            "cyan",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "green",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "magenta",
+            "magenta",
+            "magenta"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "blue",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "green",
+            "green",
+            "magenta"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "cyan",
+            "blue",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "magenta",
+            "magenta",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "cyan",
+            "cyan",
+            "magenta"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "green",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "green",
+            "green",
+            "magenta"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "blue",
+            "blue",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "magenta",
+            "cyan",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "magenta",
+            "green",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "cyan",
+            "blue",
+            "magenta"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "green",
+            "orange",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green",
+            "orange",
+            "orange",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "blue",
+            "blue",
+            "orange",
+            "green"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "magenta"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "orange",
+            "cyan",
+            "cyan",
+            "cyan",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "magenta",
+            "magenta"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "blue",
+            "green",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "orange",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green",
+            "orange"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "magenta",
+            "magenta",
+            "magenta"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "orange",
+            "orange",
+            "cyan",
+            "orange",
+            "magenta"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "green",
+            "green"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "blue",
+            "magenta",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "cyan",
+            "cyan",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "magenta",
+            "green",
+            "magenta",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "orange",
+            "orange",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "orange",
+            "magenta",
+            "green",
+            "orange",
+            "orange"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "cyan",
+            "cyan",
+            "cyan",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "magenta",
+            "cyan",
+            "magenta",
+            "magenta"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "magenta",
+            "orange",
+            "blue",
+            "blue"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "blue",
+            "blue",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "orange",
+            "orange",
+            "orange",
+            "orange"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "blue",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "orange",
+            "cyan",
+            "magenta"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "orange",
+            "blue",
+            "cyan"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "magenta",
+            "magenta"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "orange",
+            "green",
+            "orange",
+            "orange"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "magenta",
+            "cyan",
+            "green",
+            "green"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "green",
+            "green",
+            "orange",
+            "magenta"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "orange",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green",
+            "cyan"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "magenta",
+            "blue",
+            "magenta",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "orange",
+            "orange",
+            "orange",
+            "magenta",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "cyan"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "cyan",
+            "magenta",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "cyan",
+            "magenta",
+            "magenta"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green",
             "green",
             "green",
             "blue"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "blue",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "orange",
+            "orange",
+            "orange",
+            "orange",
+            "magenta"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "blue",
+            "orange"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "green",
+            "magenta",
+            "magenta"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green",
+            "green",
+            "green",
+            "orange"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "magenta",
+            "magenta"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "orange",
+            "orange",
+            "orange",
+            "orange",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "cyan",
+            "cyan"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "orange"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "cyan",
+            "magenta",
+            "magenta",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "green",
+            "green",
+            "green",
+            "cyan"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "magenta",
+            "magenta",
+            "orange",
+            "orange"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "orange",
+            "cyan",
+            "orange"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "blue",
+            "blue",
+            "green",
+            "cyan"
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "blue",
+            "cyan",
+            "blue"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "magenta",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "green",
+            "magenta",
+            "magenta",
+            "magenta",
+            "blue"
+          ]
+        }
+      ],
+      [
+        {
+          "baseHeight": 5,
+          "objects": [
+            "magenta",
+            "blue",
+            "blue",
+            "orange",
+            "cyan"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "orange",
+            "orange",
+            "orange",
+            "orange",
+            "green"
+          ]
+        },
+        {
+          "baseHeight": 5,
+          "objects": [
+            "cyan",
+            "green",
+            "green",
+            "green"
           ]
         }
       ]
