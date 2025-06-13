@@ -5,6 +5,9 @@ const objectImages = {};
 const bases = [];
 let selectedBase = null;
 let selectedObjects = [];
+// Holds information about the most recent move so it can be undone.
+// It is null when no undo is available.
+let lastMove = null;
 
 // Toggle this to enable or disable verbose logging during gameplay.
 const DEBUG = false;
@@ -98,7 +101,8 @@ class Base {
  * spacing is 50% of base width. Rows may contain a different number of
  * bases and each row is horizontally centered within the overall grid.
  * The entire level is scaled to fit within the canvas while keeping 5%
- * margins on the sides and top and a 15% margin at the bottom.
+ * margins on the sides and bottom and a 15% margin at the top where
+ * the control buttons sit.
 */
 async function prepareLevel(level) {
     bases.length = 0;
@@ -138,7 +142,7 @@ async function prepareLevel(level) {
     const scale = Math.min(areaW / unscaledW, areaH / unscaledH);
 
     const startX = cw * 0.05 + (areaW - unscaledW * scale) / 2;
-    const startY = ch * 0.05 + (areaH - unscaledH * scale) / 2;
+    const startY = ch * 0.15 + (areaH - unscaledH * scale) / 2;
 
     rows.forEach((row, ri) => {
         const rowOffset = ((maxCells - row.length) * (baseW + hGap) / 2) * scale;
@@ -228,6 +232,8 @@ async function showLevel(number) {
     if (!level) return;
     selectedBase = null;
     selectedObjects = [];
+    lastMove = null;
+    undoButton.disabled = true;
     await prepareLevel(level);
     drawLevel();
 }
@@ -245,6 +251,26 @@ const screens = {
     game: document.getElementById('game-screen'),
     completed: document.getElementById('completed-screen')
 };
+const undoButton = document.getElementById('undo-button');
+
+/**
+ * Revert the most recent move recorded in `lastMove`.
+ * The function assumes no additional moves were made after the one
+ * stored, so the objects to undo are at the top of the target base.
+ * Each object is popped from the target and pushed back to the source
+ * in the same order. Once complete the undo button is disabled until a
+ * new move occurs.
+ */
+function undoMove() {
+    if (!lastMove) return;
+    const { from, to, objects } = lastMove;
+    for (let i = 0; i < objects.length; i++) {
+        from.objects.push(to.objects.pop());
+    }
+    lastMove = null;
+    undoButton.disabled = true;
+    drawLevel();
+}
 /**
  * Toggle which screen is visible by changing the `active` CSS class.
  * Only one screen is displayed at a time so the others get hidden.
@@ -260,7 +286,8 @@ function showScreen(name) {
  * Selected objects are flagged instead of removed so they can be drawn
  * slightly above their original spot. Dropping the selection moves those
  * flagged objects to another base if allowed or clears the flag when
- * cancelled.
+ * cancelled. Every successful move is stored in `lastMove` so it can be
+ * undone once via the undo button.
  */
 function handleCanvasClick(evt) {
     const rect = canvas.getBoundingClientRect();
@@ -311,6 +338,10 @@ function handleCanvasClick(evt) {
                 target.objects.push(obj);
             }
             selectedObjects.splice(0, moveCount);
+            if (moved.length > 0) {
+                lastMove = { from: selectedBase, to: target, objects: moved };
+                undoButton.disabled = false;
+            }
             debugLog('Moved', moveCount, 'object(s) to base', bases.indexOf(target));
         }
         selectedObjects.forEach(o => { o.isSelected = false; });
@@ -332,6 +363,7 @@ document.getElementById('start-button').addEventListener('click', () => {
 canvas.addEventListener('click', handleCanvasClick);
 
 document.getElementById('reset-button').addEventListener('click', resetLevel);
+undoButton.addEventListener('click', undoMove);
 
 
 document.getElementById('next-button').addEventListener('click', () => {

@@ -27,6 +27,20 @@ button {
     font-size: 18px;
 }
 
+#top-buttons {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+#reset-button,
+#undo-button {
+    margin-top: 0;
+}
+
 #game-canvas {
     position: absolute;
     top: 0;
@@ -36,10 +50,5 @@ button {
     pointer-events: auto;
 }
 
-#reset-button {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-}
+
 
