@@ -285,6 +285,31 @@ function showScreen(name) {
 }
 
 /**
+ * Replace each letter of the start screen title with a span element using a
+ * random bright colour. Colours come from a small palette so they remain
+ * readable against the dark background. The function is executed once at
+ * startup which results in a different colour arrangement every page load.
+ */
+function colorizeStartTitle() {
+    const titleEl = document.querySelector('#start-screen h1');
+    const text = 'Color sorting game';
+    const palette = [
+        '#ff5252', '#ffb142', '#fffa65', '#32ff7e',
+        '#7efff5', '#18dcff', '#7d5fff', '#cd84f1'
+    ];
+    let html = '';
+    for (const ch of text) {
+        if (ch === ' ') {
+            html += ' ';
+            continue;
+        }
+        const color = palette[Math.floor(Math.random() * palette.length)];
+        html += `<span style="color:${color}">${ch}</span>`;
+    }
+    titleEl.innerHTML = html;
+}
+
+/**
  * Manage selection and movement of objects when the user clicks on a base.
  * Selected objects are flagged instead of removed so they can be drawn
  * slightly above their original spot. Dropping the selection moves those
@@ -377,5 +402,6 @@ document.getElementById('next-button').addEventListener('click', () => {
 });
 
 // Kick off loading of the configuration when the script loads.
+colorizeStartTitle();
 loadLevelConfigs();
 
