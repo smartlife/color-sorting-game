@@ -229,7 +229,9 @@ async function loadLevelConfigs() {
 
 /**
  * Update the game screen for the provided level number by preparing
- * layout for the level and drawing it on the canvas.
+ * layout for the level and drawing it on the canvas. Any previous
+ * selection or move history is cleared and both the undo and reset
+ * buttons are disabled because no actions have occurred yet.
  */
 async function showLevel(number) {
     const level = levelConfigs[number - 1];
@@ -238,6 +240,7 @@ async function showLevel(number) {
     selectedObjects = [];
     lastMove = null;
     undoButton.disabled = true;
+    resetButton.disabled = true;
     await prepareLevel(level);
     drawLevel();
 }
@@ -255,14 +258,16 @@ const screens = {
     game: document.getElementById('game-screen')
 };
 const undoButton = document.getElementById('undo-button');
+const resetButton = document.getElementById('reset-button');
 
 /**
  * Revert the most recent move recorded in `lastMove`.
  * The function assumes no additional moves were made after the one
  * stored, so the objects to undo are at the top of the target base.
  * Each object is popped from the target and pushed back to the source
- * in the same order. Once complete the undo button is disabled until a
- * new move occurs.
+ * in the same order. Once complete the undo and reset buttons are
+ * disabled again. Any base selection is cleared so the player starts
+ * fresh after the undo.
  */
 function undoMove() {
     if (!lastMove) return;
@@ -272,6 +277,11 @@ function undoMove() {
     }
     lastMove = null;
     undoButton.disabled = true;
+    resetButton.disabled = true;
+    // Cancel any active selection because the board state changed.
+    selectedObjects.forEach(o => { o.isSelected = false; });
+    selectedObjects = [];
+    selectedBase = null;
     drawLevel();
 }
 /**
@@ -315,7 +325,8 @@ function colorizeStartTitle() {
  * slightly above their original spot. Dropping the selection moves those
  * flagged objects to another base if allowed or clears the flag when
  * cancelled. Every successful move is stored in `lastMove` so it can be
- * undone once via the undo button.
+ * undone once via the undo button. Moving objects also enables the reset
+ * button so the level can be restarted after at least one action.
  */
 function handleCanvasClick(evt) {
     const rect = canvas.getBoundingClientRect();
@@ -369,6 +380,7 @@ function handleCanvasClick(evt) {
             if (moved.length > 0) {
                 lastMove = { from: selectedBase, to: target, objects: moved };
                 undoButton.disabled = false;
+                resetButton.disabled = false;
             }
             debugLog('Moved', moveCount, 'object(s) to base', bases.indexOf(target));
         }
